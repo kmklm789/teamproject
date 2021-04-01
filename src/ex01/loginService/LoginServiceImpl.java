@@ -1,43 +1,49 @@
 package ex01.loginService;
 
-
 import ex01.common.CommonClass;
 import ex01.database.DatabaseService;
 import ex01.database.DatabaseServiceImpl;
+import ex01.mainPage.PageMain;
 import javafx.scene.Parent;
 import javafx.scene.control.TextField;
 
-public class LoginServiceImpl extends CommonClass implements LoginService{
+public class LoginServiceImpl extends CommonClass implements LoginService {
 	@Override
 	public void loginCheck(Parent root) {
-		TextField id = (TextField)root.lookup("#fxId");
-		TextField pwd = (TextField)root.lookup("#fxPw");
-		
-		if(id.getText().isEmpty()) {
-			alert("¾ÆÀÌµð¸¦ ÀÔ·ÂÇÏ¼¼¿ä");
-		}
-		
-		System.out.println("·Î±×ÀÎ Ã¼Å© ÇÕ´Ï´Ù");
-		System.out.println("id : "+id.getText());
-		System.out.println("pwd : "+pwd.getText());
-		
+		TextField id = (TextField) root.lookup("#fxId");
+		TextField pwd = (TextField) root.lookup("#fxPw");
+
+		System.out.println("ï¿½Î±ï¿½ï¿½ï¿½ Ã¼Å© ï¿½Õ´Ï´ï¿½");
+		System.out.println("id : " + id.getText());
+		System.out.println("pwd : " + pwd.getText());
+
 		DatabaseService ds = new DatabaseServiceImpl();
 		String dbPwd = ds.loginCheck(id.getText());
-		if(dbPwd == null) {
-			alert("Á¸ÀçÇÏÁö ¾Ê´Â ¾ÆÀÌµð ÀÔ´Ï´Ù");
-		}else {
-			if( dbPwd.equals(pwd.getText()) ) {
-				alert("ÀÎÁõ Åë°ú");
-			}else {
-				alert("ºñ¹Ð¹øÈ£°¡ Æ²·È½À´Ï´Ù");
+
+		if (id.getText().isEmpty()==true) {
+			alert("ï¿½ï¿½ï¿½Ìµï¿½ ï¿½Ô·ï¿½ï¿½Ï¼ï¿½ï¿½ï¿½");
+		} else {
+			if (dbPwd == null) {
+				alert("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê´ï¿½ ï¿½ï¿½ï¿½Ìµï¿½ ï¿½Ô´Ï´ï¿½");
+			} else {
+				if (dbPwd.equals(pwd.getText())) {
+					alert("ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½");
+					PageMain page = new PageMain();
+					page.setMainStage();
+				} else {
+					alert("ï¿½ï¿½Ð¹ï¿½È£ï¿½ï¿½ Æ²ï¿½È½ï¿½ï¿½Ï´ï¿½");
+				}
 			}
 		}
 	}
 }
 
-
-
-
-
-
-
+//		if(dbPwd == null) {
+//			alert("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê´ï¿½ ï¿½ï¿½ï¿½Ìµï¿½ ï¿½Ô´Ï´ï¿½");
+//		}else {
+//			if( dbPwd.equals(pwd.getText()) ) {
+//				alert("ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½");
+//			}else {
+//				alert("ï¿½ï¿½Ð¹ï¿½È£ï¿½ï¿½ Æ²ï¿½È½ï¿½ï¿½Ï´ï¿½");
+//			}
+//		}
