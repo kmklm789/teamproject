@@ -24,15 +24,15 @@ public class JoinController extends CommonClass implements Initializable{
 		
 	}
 	public void btnOk() {
-		System.out.println("OK Å¬¸¯");
+		System.out.println("OK í´ë¦­");
 		TextField id = (TextField)root.lookup("#fxId");
 		TextField pw = (TextField)root.lookup("#fxPw");
 		TextField name = (TextField)root.lookup("#fxName");
 		TextField p_num = (TextField)root.lookup("#fxP_num");
-		System.out.println("¾ÆÀÌµğ : "+id.getText());
-		System.out.println("ºñ¹Ğ¹øÈ£ : "+pw.getText());
-		System.out.println("ÀÌ¸§ : "+name.getText());
-		System.out.println("ÀüÈ­¹øÈ£ : "+p_num.getText());
+		System.out.println("ì•„ì´ë”” : "+id.getText());
+		System.out.println("ë¹„ë°€ë²ˆí˜¸ : "+pw.getText());
+		System.out.println("ì´ë¦„ : "+name.getText());
+		System.out.println("ì „í™”ë²ˆí˜¸ : "+p_num.getText());
 		
 		MemberDTO dto = new MemberDTO();
 		dto.setId(id.getText());
@@ -42,10 +42,10 @@ public class JoinController extends CommonClass implements Initializable{
 		ds = new DatabaseServiceImpl();
 		int result = ds.saveMember(dto);
 		if(result == 1) {
-			alert("¼º°øÀûÀ¸·Î °¡ÀÔµÇ¾ú½À´Ï´Ù");
+			alert("íšŒì›ê°€ì… ì„±ê³µ");
 			exit(root);
 		}else {
-			alert("°¡ÀÔ¿¡ ½ÇÆĞÇß½À´Ï´Ù");
+			alert("ì¤‘ë³µëœ ì•„ì´ë””ì…ë‹ˆë‹¤.");
 			
 		
 		}
@@ -53,7 +53,7 @@ public class JoinController extends CommonClass implements Initializable{
 	}
 	
 	public void btnBack() {
-		System.out.println("Back Å¬¸¯");
+		System.out.println("Back í´ë¦­");
 		Stage stage = (Stage)root.getScene().getWindow();
 		stage.close();
 	}

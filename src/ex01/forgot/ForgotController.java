@@ -27,12 +27,12 @@ public class ForgotController extends CommonClass implements Initializable{
 	}
 	
 	public void btnOK() {
-		System.out.println("OK Å¬¸¯");
+		System.out.println("OK í´ë¦­");
 		TextField id = (TextField)root.lookup("#fxId");
 		TextField name = (TextField)root.lookup("#fxName");
 		TextField p_num = (TextField)root.lookup("#fxP_num");
 		
-		System.out.println("·Î±×ÀÎ Ã¼Å© ÇÕ´Ï´Ù");
+		System.out.println("ì…ë ¥ëœ ì •ë³´");
 		System.out.println("id : "+id.getText());
 		System.out.println("name : "+name.getText());
 		System.out.println("p_num : "+p_num.getText());
@@ -43,17 +43,17 @@ public class ForgotController extends CommonClass implements Initializable{
 
 		
 		if(dbPwd == null) {
-			alert("Á¤º¸°¡ ÀÏÄ¡ÇÏÁö¾Ê½À´Ï´Ù");
+			alert("ì •ë³´ê°€ ì¼ì¹˜í•˜ì§€ì•ŠìŠµë‹ˆë‹¤");
 		}
 		else  {
-			alert("ºñ¹Ğ¹øÈ£ :"+(dbPwd));
+			alert("ë¹„ë°€ë²ˆí˜¸: "+(dbPwd));
 			}
 		}
 		
 	
 	
 	public void btnFID() {
-		System.out.println("Forgot ID Å¬¸¯");
+		System.out.println("Forgot ID í´ë¦­");
 		forgot02.setForgot2Stage();
 		Stage stage = (Stage)root.getScene().getWindow();
 		stage.close();
