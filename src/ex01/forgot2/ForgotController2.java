@@ -26,7 +26,7 @@ public class ForgotController2 extends CommonClass implements Initializable{
 	}
 
 	public void btnOK() {
-		System.out.println("OK Å¬¸¯");
+		System.out.println("OK í´ë¦­");
 		
 		TextField name = (TextField)root.lookup("#fxName");
 		TextField p_num = (TextField)root.lookup("#fxP_num");
@@ -39,7 +39,7 @@ public class ForgotController2 extends CommonClass implements Initializable{
 
 		
 		if(dbid == null) {
-			alert("Á¤º¸°¡ ÀÏÄ¡ÇÏÁö¾Ê½À´Ï´Ù");
+			alert("ì •ë³´ê°€ ì¼ì¹˜í•˜ì§€ì•ŠìŠµë‹ˆë‹¤.");
 		}
 		else  {
 			alert("ID :"+(dbid));
@@ -47,7 +47,7 @@ public class ForgotController2 extends CommonClass implements Initializable{
 	}
 	
 	public void btnBack() {
-		System.out.println("Back Å¬¸¯");
+		System.out.println("Back í´ë¦­");
 		Stage stage = (Stage)root.getScene().getWindow();
 		stage.close();
 	}

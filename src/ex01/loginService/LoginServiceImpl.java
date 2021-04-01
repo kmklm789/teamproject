@@ -12,7 +12,7 @@ public class LoginServiceImpl extends CommonClass implements LoginService {
 		TextField id = (TextField) root.lookup("#fxId");
 		TextField pwd = (TextField) root.lookup("#fxPw");
 
-		System.out.println("·Î±×ÀÎ Ã¼Å© ÇÕ´Ï´Ù");
+		System.out.println("ë¡œê·¸ì¸ ì²´í¬ í•©ë‹ˆë‹¤");
 		System.out.println("id : " + id.getText());
 		System.out.println("pwd : " + pwd.getText());
 
@@ -20,27 +20,17 @@ public class LoginServiceImpl extends CommonClass implements LoginService {
 		String dbPwd = ds.loginCheck(id.getText());
 
 		if (id.getText().isEmpty()==true) {
-			alert("¾ÆÀÌµğ¸¦ ÀÔ·ÂÇÏ¼¼¿ä");
+			alert("ì•„ì´ë””ë¥¼ ì…ë ¥í•˜ì„¸ìš”");
 		} else {
 			if (dbPwd == null) {
-				alert("Á¸ÀçÇÏÁö ¾Ê´Â ¾ÆÀÌµğ ÀÔ´Ï´Ù");
+				alert("ì¡´ì¬í•˜ì§€ ì•ŠëŠ” ì•„ì´ë”” ì…ë‹ˆë‹¤");
 			} else {
 				if (dbPwd.equals(pwd.getText())) {
-					alert("ÀÎÁõ Åë°ú");
+					alert("ì¸ì¦ í†µê³¼");
 				} else {
-					alert("ºñ¹Ğ¹øÈ£°¡ Æ²·È½À´Ï´Ù");
+					alert("ë¹„ë°€ë²ˆí˜¸ê°€ í‹€ë ¸ìŠµë‹ˆë‹¤");
 				}
 			}
 		}
 	}
 }
-
-//		if(dbPwd == null) {
-//			alert("Á¸ÀçÇÏÁö ¾Ê´Â ¾ÆÀÌµğ ÀÔ´Ï´Ù");
-//		}else {
-//			if( dbPwd.equals(pwd.getText()) ) {
-//				alert("ÀÎÁõ Åë°ú");
-//			}else {
-//				alert("ºñ¹Ğ¹øÈ£°¡ Æ²·È½À´Ï´Ù");
-//			}
-//		}

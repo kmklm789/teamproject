@@ -42,12 +42,12 @@ public class Controller extends CommonClass implements Initializable{
 	}
 	
 	public void btnForgot() {
-		System.out.println("Forgot ≈¨∏Ø");
+		System.out.println("Forgot ÌÅ¥Î¶≠");
 		forgot01.setForgotStage();
 	}
 	
 	public void btnJoin() {
-		System.out.println("Join ≈¨∏Ø");
+		System.out.println("Join ÌÅ¥Î¶≠");
 		join.setJoinStage();
 	}
 
