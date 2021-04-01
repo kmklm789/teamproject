@@ -30,6 +30,8 @@ public class LoginServiceImpl extends CommonClass implements LoginService {
 			} else {
 				if (dbPwd.equals(pwd.getText())) {
 					alert("인증 통과");
+					PageMain page = new PageMain();
+					page.setMainStage();
 				} else {
 					alert("비밀번호가 틀렸습니다");
 				}
