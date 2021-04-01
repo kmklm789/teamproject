@@ -44,20 +44,12 @@ public class Controller extends CommonClass implements Initializable{
 	}
 	
 	public void btnForgot() {
-<<<<<<< HEAD
-		System.out.println("Forgot Ŭ��");
-=======
 		System.out.println("Forgot 클릭");
->>>>>>> 6f87e5a5fb6890c4eb8a45d1c8dd62774f8b5cea
 		forgot01.setForgotStage();
 	}
 	
 	public void btnJoin() {
-<<<<<<< HEAD
-		System.out.println("Join Ŭ��");
-=======
 		System.out.println("Join 클릭");
->>>>>>> 6f87e5a5fb6890c4eb8a45d1c8dd62774f8b5cea
 		join.setJoinStage();
 	}
 
