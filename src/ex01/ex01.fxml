@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #211b4c;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ex01.Controller">
+   <children>
+      <ImageView fx:id="imageView" fitHeight="219.0" fitWidth="216.0" layoutX="56.0" layoutY="49.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../Desktop/KakaoTalk_20210329_165120324.jpg" />
+         </image></ImageView>
+      <TextField fx:id="fxId" layoutX="372.0" layoutY="115.0" />
+      <PasswordField fx:id="fxPw" layoutX="372.0" layoutY="200.0" />
+      <Button layoutX="194.0" layoutY="291.0" mnemonicParsing="false" onMouseClicked="#btnLogin" prefHeight="26.0" prefWidth="226.0" text="Login" />
+      <Label layoutX="272.0" layoutY="203.0" prefHeight="18.0" prefWidth="70.0" text="Password" textFill="#eef1ff" />
+      <Label layoutX="272.0" layoutY="118.0" prefHeight="18.0" prefWidth="70.0" text="User name" textFill="#eef1ff" />
+      <Button layoutX="198.0" layoutY="326.0" mnemonicParsing="false" onMouseClicked="#btnJoin" prefHeight="26.0" prefWidth="110.0" text="JOIN" />
+      <Button layoutX="316.0" layoutY="326.0" mnemonicParsing="false" onMouseClicked="#btnForgot" text="Forgot ID/PW?">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>

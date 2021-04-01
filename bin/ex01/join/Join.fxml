@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="497.0" prefWidth="526.0" style="-fx-background-color: #211b4c;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ex01.join.JoinController">
+   <children>
+      <Label layoutX="154.0" layoutY="38.0" prefHeight="50.0" prefWidth="217.0" text="        Join" textFill="#eef1ff">
+         <font>
+            <Font size="33.0" />
+         </font>
+      </Label>
+      <Label layoutX="123.0" layoutY="125.0" prefHeight="28.0" prefWidth="34.0" text=" ID" textAlignment="CENTER" textFill="#eef1ff">
+         <font>
+            <Font size="19.0" />
+         </font>
+      </Label>
+      <Label layoutX="123.0" layoutY="190.0" prefHeight="26.0" prefWidth="34.0" text="PW" textFill="#eef1ff">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="79.0" layoutY="314.0" text="Phon Number" textFill="#eef1ff">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="115.0" layoutY="253.0" text="Name" textFill="#eef1ff">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <TextField fx:id="fxName" layoutX="240.0" layoutY="253.0" />
+      <TextField fx:id="fxId" layoutX="239.0" layoutY="126.0" />
+      <TextField fx:id="fxP_num" layoutX="239.0" layoutY="314.0" />
+      <Button layoutX="307.0" layoutY="395.0" mnemonicParsing="false" onMouseClicked="#btnBack" text="Back">
+         <font>
+            <Font size="18.0" />
+         </font></Button>
+      <PasswordField fx:id="fxPw" layoutX="240.0" layoutY="190.0" />
+      <Button layoutX="164.0" layoutY="395.0" mnemonicParsing="false" onMouseClicked="#btnOk" text="OK">
+         <font>
+            <Font size="18.0" />
+         </font></Button>
+   </children>
+</AnchorPane>
