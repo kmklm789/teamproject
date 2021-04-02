@@ -20,10 +20,12 @@ public class PageController implements Initializable{
 	@FXML ImageView fxBtn01;
 	@FXML ImageView fxBtn02;
 	@FXML ImageView fxBtn03;
+	@FXML ImageView fxBtn04;
 	
 	@FXML private StackPane fxSP01;
 	@FXML private StackPane fxSP02;
 	@FXML private StackPane fxSP03;
+	@FXML private StackPane fxSP04;
 	@FXML private AnchorPane fxAP01;
 	@FXML ImageView fxPlay;
 	@FXML ImageView fxPause;
@@ -33,6 +35,7 @@ public class PageController implements Initializable{
 		fxSP01.setVisible(true);
 		fxSP02.setVisible(false);
 		fxSP03.setVisible(false);
+		fxSP04.setVisible(false);
 		fxPause.setVisible(false);
 		ms = new MediaServiceImpl();
 	}
@@ -48,6 +51,7 @@ public class PageController implements Initializable{
 		fxSP01.setVisible(true);
 		fxSP02.setVisible(false);
 		fxSP03.setVisible(false);
+		fxSP04.setVisible(false);
 	}
 	@FXML
 	private void btn02() {
@@ -55,6 +59,7 @@ public class PageController implements Initializable{
 		fxSP01.setVisible(false);
 		fxSP02.setVisible(true);
 		fxSP03.setVisible(false);
+		fxSP04.setVisible(false);
 	}
 	@FXML
 	private void btn03() {
@@ -62,6 +67,15 @@ public class PageController implements Initializable{
 		fxSP01.setVisible(false);
 		fxSP02.setVisible(false);
 		fxSP03.setVisible(true);
+		fxSP04.setVisible(false);
+	}
+	@FXML
+	private void btn04() {
+		System.out.println("04");
+		fxSP01.setVisible(false);
+		fxSP02.setVisible(false);
+		fxSP03.setVisible(false);
+		fxSP04.setVisible(true);
 	}
 	
 	public void MusicPlay() {
@@ -78,11 +92,15 @@ public class PageController implements Initializable{
 	}
 	public void btnPress02() {
 		fxBtn02.setLayoutX(739);
-		fxBtn02.setLayoutY(270);
+		fxBtn02.setLayoutY(263);
 	}
 	public void btnPress03() {
 		fxBtn03.setLayoutX(739);
-		fxBtn03.setLayoutY(327);
+		fxBtn03.setLayoutY(313);
+	}
+	public void btnPress04() {
+		fxBtn04.setLayoutX(739);
+		fxBtn04.setLayoutY(363);
 	}
 	
 	public void btnRelease01() {
@@ -91,11 +109,15 @@ public class PageController implements Initializable{
 	}
 	public void btnRelease02() {
 		fxBtn02.setLayoutX(739);
-		fxBtn02.setLayoutY(268);
+		fxBtn02.setLayoutY(261);
 	}
 	public void btnRelease03() {
 		fxBtn03.setLayoutX(739);
-		fxBtn03.setLayoutY(325);
+		fxBtn03.setLayoutY(311);
+	}
+	public void btnRelease04() {
+		fxBtn04.setLayoutX(739);
+		fxBtn04.setLayoutY(361);
 	}
 
 }

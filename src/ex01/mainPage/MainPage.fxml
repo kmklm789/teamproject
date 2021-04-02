@@ -14,14 +14,14 @@
    <children>
       <ImageView fitHeight="560.0" fitWidth="960.0" layoutY="-1.0">
          <image>
-            <Image url="8811.jpg_wh860.jpg" />
+            <Image url="@../../8811.jpg_wh860.jpg" />
          </image>
       </ImageView>
       <StackPane fx:id="fxSP01" layoutX="5.0" layoutY="5.0" prefHeight="547.0" prefWidth="746.0">
          <children>
             <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #FFFFFF;">
                <children>
-                  <Label layoutX="300.0" layoutY="250.0" text="메인 홈, 게시글">
+                  <Label layoutX="300.0" layoutY="250.0" text="프로필">
                      <font>
                         <Font name="System Bold" size="24.0" />
                      </font>
@@ -34,7 +34,7 @@
          <children>
             <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #FFFFFF;">
                <children>
-                  <Label layoutX="300.0" layoutY="250.0" text="프로필">
+                  <Label layoutX="300.0" layoutY="250.0" text="게시글">
                      <font>
                         <Font name="System Bold" size="24.0" />
                      </font>
@@ -56,21 +56,34 @@
             </AnchorPane>
          </children>
       </StackPane>
+      <StackPane fx:id="fxSP04" layoutX="5.0" layoutY="5.0" prefHeight="547.0" prefWidth="746.0">
+         <children>
+            <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #FFFFFF;">
+               <children>
+                  <Label layoutX="300.0" layoutY="250.0" text="사진첩">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+         </children>
+      </StackPane>
       <MediaView fx:id="fxMediaView" fitHeight="100.0" fitWidth="100.0" layoutX="804.0" layoutY="398.0" />
       <ImageView fx:id="fxPlay" fitHeight="14.0" fitWidth="22.0" layoutX="847.0" layoutY="459.0" onMouseClicked="#MusicPlay" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="재생2.png" />
+            <Image url="@../../재생2.png" />
          </image>
       </ImageView>
       <ImageView fx:id="fxPause" fitHeight="14.0" fitWidth="22.0" layoutX="847.0" layoutY="459.0" onMouseClicked="#MusicPause" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="일시정지2.png" />
+            <Image url="@../../일시정지2.png" />
          </image>
       </ImageView>
       <ComboBox layoutX="788.0" layoutY="525.0" prefHeight="22.0" prefWidth="132.0" promptText="파도타기" />
       <ImageView fitHeight="197.0" fitWidth="235.0" layoutX="754.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="KakaoTalk_20210401_172922496.jpg" />
+            <Image url="@../../Logo.jpg" />
          </image>
       </ImageView>
       <Button layoutX="787.0" layoutY="503.0" mnemonicParsing="false" prefHeight="22.0" prefWidth="132.0" text="친구찾기" />
@@ -78,19 +91,24 @@
          <font>
             <Font name="System Bold" size="12.0" />
          </font></Label>
+      <ImageView fx:id="fxBtn02" fitHeight="57.0" fitWidth="78.0" layoutX="739.0" layoutY="261.0" onMouseClicked="#btn02" onMousePressed="#btnPress02" onMouseReleased="#btnRelease02" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../버튼1.png" />
+         </image>
+      </ImageView>
       <ImageView fx:id="fxBtn01" fitHeight="57.0" fitWidth="78.0" layoutX="739.0" layoutY="211.0" onMouseClicked="#btn01" onMousePressed="#btnPress01" onMouseReleased="#btnRelease01" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="버튼1.png" />
+            <Image url="@../../버튼02.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="fxBtn02" fitHeight="57.0" fitWidth="78.0" layoutX="739.0" layoutY="268.0" onMouseClicked="#btn02" onMousePressed="#btnPress02" onMouseReleased="#btnRelease02" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="fxBtn03" fitHeight="57.0" fitWidth="78.0" layoutX="739.0" layoutY="311.0" onMouseClicked="#btn03" onMousePressed="#btnPress03" onMouseReleased="#btnRelease03" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="버튼02.png" />
+            <Image url="@../../버튼03.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="fxBtn03" fitHeight="57.0" fitWidth="78.0" layoutX="739.0" layoutY="325.0" onMouseClicked="#btn03" onMousePressed="#btnPress03" onMouseReleased="#btnRelease03" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="fxBtn04" fitHeight="57.0" fitWidth="78.0" layoutX="739.0" layoutY="361.0" onMouseClicked="#btn04" onMousePressed="#btnPress04" onMouseReleased="#btnRelease04" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="버튼03.png" />
+            <Image url="@../../버튼04.png" />
          </image>
       </ImageView>
    </children>
