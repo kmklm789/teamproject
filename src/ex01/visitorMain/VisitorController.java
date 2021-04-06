@@ -313,9 +313,9 @@ public class VisitorController implements Initializable{
 		profilePNum.setText(profileMap.get(5));
 		profileText.setText(profileMap.get(6));
 	}
-	public void diaryWrite() {
-		diary.setDiaryStage(friendId, root);
-	}
+//	public void diaryWrite() {
+//		diary.setDiaryStage(friendId, root);
+//	}
 	public void diaryShow() {
 		HashMap<Integer, String> diaryMap = new HashMap<Integer, String>();
 		System.out.println("mainShow() 실행");

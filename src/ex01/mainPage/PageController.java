@@ -37,14 +37,14 @@ import ex01.imagedto.ImageDTO;
 import ex01.mainPage.diary.DiaryMain;
 import ex01.mainPage.media.MediaService;
 import ex01.mainPage.media.MediaServiceImpl;
+import ex01.mainPage.mediaInterface.mediaInter;
 import ex01.mainPage.profile.ProfileMain;
 import ex01.mainPage.profile.profiledto.ProfileDTO;
 import ex01.mainPage.time.TimeService;
 import ex01.visitordto.VisitorDTO;
 
-public class PageController implements Initializable {
+public class PageController implements Initializable , mediaInter{
 	Parent root;
-	MediaService ms;
 	String myId;
 	DatabaseService ds;
 	PageMain pm;
@@ -91,16 +91,22 @@ public class PageController implements Initializable {
 	static {
 		cs = new CommonClass();
 	}
-
+	//MediaService ms;
+//	public static MediaService ms;
+//	static {
+//		ms = new MediaServiceImpl();
+//	}
+	
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		fxSP01.setVisible(true);
 		fxSP02.setVisible(false);
 		fxSP03.setVisible(false);
 		fxSP04.setVisible(false);
-		ms = new MediaServiceImpl();
 		mu.put(1, "/music/프리스타일-Y.mp3");
 		mu.put(2, "/music/에픽하이-우산.mp3");
+		//ms = new MediaServiceImpl();
+		System.out.println(ms);
 		pm = new PageMain();
 		diary = new DiaryMain();
 		ds = new DatabaseServiceImpl();
@@ -196,6 +202,10 @@ public class PageController implements Initializable {
 			fxMname.setText("에픽하이-우산");
 		}
 		System.out.println(num);
+	}
+	
+	public void MusicStop() {
+		ms.MusicStop();
 	}
 
 	public void logout() {

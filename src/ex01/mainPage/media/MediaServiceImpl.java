@@ -11,7 +11,7 @@ import javafx.scene.media.MediaView;
 
 public class MediaServiceImpl implements MediaService {
 
-	MediaPlayer mediaPlayer;
+	public static MediaPlayer mediaPlayer;
 	MediaView mediaView;
 	ProgressBar progressBar;
 	Slider slider;
@@ -28,6 +28,7 @@ public class MediaServiceImpl implements MediaService {
 	@Override
 	public void MusicPlay() {
 		mediaPlayer.play();
+		System.out.println(mediaPlayer);
 	}
 
 	@Override
@@ -48,6 +49,7 @@ public class MediaServiceImpl implements MediaService {
 	@Override
 	public void MusicStop() {
 		mediaPlayer.stop();
+		System.out.println(mediaPlayer);
 	}
 
 	@Override

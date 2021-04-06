@@ -11,7 +11,6 @@ import ex01.database.DatabaseServiceImpl;
 import ex01.mainPage.PageController;
 import ex01.mainPage.diarydto.DiaryDTO;
 import ex01.mainPage.media.MediaService;
-import ex01.mainPage.media.MediaServiceImpl;
 import ex01.mainPage.time.TimeService;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -25,6 +24,7 @@ public class DiaryController implements Initializable {
 	Parent pageRoot;
 	String userId;
 	PageController pc;
+	MediaService ms;
 	int i = 0;
 	public static CommonService cs;
 	static {
@@ -53,8 +53,8 @@ public class DiaryController implements Initializable {
 			DiaryController.cs.exit(root);
 			System.out.println("저장 완료");
 			System.out.println(userId);
-			callMain();
 			pc.diaryExit(pageRoot);
+			callMain();
 		}
 	}
 	public void cancelDiary() {
