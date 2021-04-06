@@ -41,12 +41,13 @@ import ex01.mainPage.PageMain;
 import ex01.mainPage.diary.DiaryMain;
 import ex01.mainPage.media.MediaService;
 import ex01.mainPage.media.MediaServiceImpl;
+import ex01.mainPage.mediaInterface.mediaInter;
 import ex01.mainPage.profile.ProfileMain;
 import ex01.mainPage.profile.profiledto.ProfileDTO;
 import ex01.mainPage.time.TimeService;
 import ex01.visitordto.VisitorDTO;
 
-public class VisitorController implements Initializable{
+public class VisitorController implements Initializable, mediaInter {
 	Parent root;
 	MediaService ms;
 	String friendId;
@@ -227,10 +228,10 @@ public class VisitorController implements Initializable{
 		stage.show();
 	}
 	public void moveMyPage() {
-		pm.getMyId(myId);
-		pm.setMainStage();
 		ms.MusicStop();
 		VisitorController.cs.exit(root);
+		pm.getMyId(myId);
+		pm.setMainStage();
 	}
 	public void memberProc() {
 		FriendListMain addf = new FriendListMain();

@@ -13,18 +13,18 @@ import ex01.friendList.friendDB.DbFriendImpl;
 import ex01.mainPage.PageController;
 import ex01.mainPage.media.MediaService;
 import ex01.mainPage.media.MediaServiceImpl;
+import ex01.mainPage.mediaInterface.mediaInter;
 import ex01.visitorMain.VisitorMainPage;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.control.ComboBox;
 
-public class ControllerFL implements Initializable{
+public class ControllerFL implements Initializable, mediaInter {
 	Parent root;
 	Parent mainPageRoot;
 	FindIdMain mm;
 	String myId;
 	VisitorMainPage vmp;
-	MediaService ms;
 	
 	public static CommonService cs;
 	static {cs = new CommonClass();}
@@ -52,7 +52,6 @@ public class ControllerFL implements Initializable{
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		mm = new FindIdMain(); //창을 하나 더 뜨게 하는 것
 		vmp = new VisitorMainPage();
-		ms = new MediaServiceImpl();
 	}
 	public String getComboBox() {
 		ComboBox<String> cmb = (ComboBox<String>)root.lookup("#cmbFriend");
@@ -66,10 +65,10 @@ public class ControllerFL implements Initializable{
 	public void move() {
 		String friendId =  getComboBox();
 		ControllerFL.cs.exit(root);
-		vmp.getMyId(friendId, myId);
-		vmp.setMainStage();
 		ms.MusicStop();
 		PageController.cs.exit(mainPageRoot);
+		vmp.getMyId(friendId, myId);
+		vmp.setMainStage();
 	}
 
 	public void setRoot(Parent root, String myId, Parent mainPageRoot) {

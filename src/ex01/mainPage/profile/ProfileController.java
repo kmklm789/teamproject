@@ -11,6 +11,7 @@ import ex01.database.DatabaseServiceImpl;
 import ex01.mainPage.PageController;
 import ex01.mainPage.media.MediaService;
 import ex01.mainPage.media.MediaServiceImpl;
+import ex01.mainPage.mediaInterface.mediaInter;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
@@ -21,7 +22,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
-public class ProfileController implements Initializable {
+public class ProfileController implements Initializable, mediaInter {
 	Parent root;
 	Parent pageRoot;
 	String id;
@@ -87,9 +88,9 @@ public class ProfileController implements Initializable {
 			int result = ds.profileSave(info);
 			if(result == 1) {
 				ProfileController.cs.exit(root);
-				callMain();
-				pc.MusicPause();
+				ms.MusicStop();
 				PageController.cs.exit(pageRoot);
+				callMain();
 			}else {
 				ProfileController.cs.alert("모든 정보를 입력하세요");
 			}
@@ -97,9 +98,9 @@ public class ProfileController implements Initializable {
 			int result = ds.profileUpdate(info, id);
 			if(result == 1) {
 				ProfileController.cs.exit(root);
-				callMain();
-				pc.MusicPause();
+				ms.MusicStop();
 				PageController.cs.exit(pageRoot);
+				callMain();
 			}else {
 				ProfileController.cs.alert("모든 정보를 입력하세요");
 			}

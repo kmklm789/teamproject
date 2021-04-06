@@ -298,10 +298,10 @@ public class PageController implements Initializable , mediaInter{
 
 	public void deleteProfileImg() {
 		ds.profileImageDelete(myId);
-		pm.getMyId(myId);
-		pm.setMainStage();
 		ms.MusicStop();
 		PageController.cs.exit(root);
+		pm.getMyId(myId);
+		pm.setMainStage();
 	}
 
 	public void profileModify() {
