@@ -56,19 +56,20 @@ public class ControllerFL implements Initializable, mediaInter {
 	public String getComboBox() {
 		ComboBox<String> cmb = (ComboBox<String>)root.lookup("#cmbFriend");
 		String friend = cmb.getValue();
-		if(friend == null) {
-			ControllerFL.cs.alert("콤보박스를 선택해주세요");
-		}
 		return friend;
 	}
 
 	public void move() {
 		String friendId =  getComboBox();
-		ControllerFL.cs.exit(root);
-		ms.MusicStop();
-		PageController.cs.exit(mainPageRoot);
-		vmp.getMyId(friendId, myId);
-		vmp.setMainStage();
+		if(friendId == null) {
+			ControllerFL.cs.alert("친구 아이디를 선택해주세요.");
+		}else {
+			ControllerFL.cs.exit(root);
+			ms.MusicStop();
+			PageController.cs.exit(mainPageRoot);
+			vmp.getMyId(friendId, myId);
+			vmp.setMainStage();
+		}
 	}
 
 	public void setRoot(Parent root, String myId, Parent mainPageRoot) {
