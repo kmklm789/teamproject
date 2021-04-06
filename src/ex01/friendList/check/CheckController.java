@@ -16,13 +16,15 @@ import javafx.stage.Stage;
 
 public class CheckController implements Initializable{
 	Parent root;
+	Parent mainPageRoot;
 	CheckMain cm;
 	String userId, myId;
 
-	public void setRoot(Parent root,String userId, String myId) {
+	public void setRoot(Parent root, String userId, String myId, Parent mainPageRoot) {
 		this.root = root;
 		this.userId = userId;
 		this.myId = myId;
+		this.mainPageRoot = mainPageRoot;
 	}
 	public void okProc() {
 		System.out.println("네 클릭");
@@ -77,7 +79,7 @@ public class CheckController implements Initializable{
 		Scene scene = new Scene(root);
 
 		ControllerFL controller = loader.getController();
-		controller.setRoot(root, myId);
+		controller.setRoot(root, myId, mainPageRoot);
 
 		stage.setScene(scene);
 		stage.show();

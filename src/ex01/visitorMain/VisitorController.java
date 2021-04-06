@@ -1,4 +1,4 @@
-package ex01.mainPage;
+package ex01.visitorMain;
 
 import java.io.File;
 import java.io.IOException;
@@ -33,7 +33,11 @@ import ex01.common.CommonService;
 import ex01.database.DatabaseService;
 import ex01.database.DatabaseServiceImpl;
 import ex01.friendList.FriendListMain;
+import ex01.friendList.friendDB.DbFriend;
+import ex01.friendList.friendDB.DbFriendImpl;
 import ex01.imagedto.ImageDTO;
+import ex01.mainPage.PageController;
+import ex01.mainPage.PageMain;
 import ex01.mainPage.diary.DiaryMain;
 import ex01.mainPage.media.MediaService;
 import ex01.mainPage.media.MediaServiceImpl;
@@ -42,20 +46,21 @@ import ex01.mainPage.profile.profiledto.ProfileDTO;
 import ex01.mainPage.time.TimeService;
 import ex01.visitordto.VisitorDTO;
 
-public class PageController implements Initializable {
+public class VisitorController implements Initializable{
 	Parent root;
 	MediaService ms;
+	String friendId;
 	String myId;
 	DatabaseService ds;
 	PageMain pm;
+	VisitorMainPage mpv;
 	ProfileMain pfm;
 	DiaryMain diary;
 	String text;
 	int imageNum;
 	HashMap<Integer, String> mu = new HashMap<Integer, String>();
 	int num = 1;
-	int vNum;
-	
+
 	@FXML Label profileName;
 	@FXML Label profileAge;
 	@FXML Label profileBirth;
@@ -86,29 +91,31 @@ public class PageController implements Initializable {
 	@FXML ImageView profileImg;
 	@FXML Button memberProc;
 	@FXML Label fxMname;
-
+	
 	public static CommonService cs;
 	static {
 		cs = new CommonClass();
 	}
-
+	
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		fxSP01.setVisible(true);
 		fxSP02.setVisible(false);
 		fxSP03.setVisible(false);
 		fxSP04.setVisible(false);
+		fxPause.setVisible(false);
 		ms = new MediaServiceImpl();
 		mu.put(1, "/music/프리스타일-Y.mp3");
 		mu.put(2, "/music/에픽하이-우산.mp3");
 		pm = new PageMain();
+		mpv = new VisitorMainPage();
 		diary = new DiaryMain();
 		ds = new DatabaseServiceImpl();
 		pfm = new ProfileMain();
 	}
-
-	public void setRoot(Parent root, String myId) {
+	public void setRoot(Parent root, String friendId, String myId) {
 		this.root = root;
+		this.friendId = friendId;
 		this.myId = myId;
 		ms.setMedia(root, mu.get(num));
 		ms.MusicPlay();
@@ -132,7 +139,6 @@ public class PageController implements Initializable {
 		fxSP03.setVisible(false);
 		fxSP04.setVisible(false);
 	}
-
 	@FXML
 	private void btn02() {
 		System.out.println("02");
@@ -141,7 +147,6 @@ public class PageController implements Initializable {
 		fxSP03.setVisible(false);
 		fxSP04.setVisible(false);
 	}
-
 	@FXML
 	private void btn03() {
 		System.out.println("03");
@@ -150,7 +155,6 @@ public class PageController implements Initializable {
 		fxSP03.setVisible(true);
 		fxSP04.setVisible(false);
 	}
-
 	@FXML
 	private void btn04() {
 		System.out.println("04");
@@ -159,15 +163,15 @@ public class PageController implements Initializable {
 		fxSP03.setVisible(false);
 		fxSP04.setVisible(true);
 	}
-
+	
 	public void MusicPlay() {
 		ms.MusicPlay();
 	}
-
+	
 	public void MusicPause() {
 		ms.MusicPause();
 	}
-
+	
 	public void MusicNext() {
 		num++;
 		if (num == 3) {
@@ -198,19 +202,20 @@ public class PageController implements Initializable {
 		System.out.println(num);
 	}
 
+	
 	public void logout() {
 		ms.MusicStop();
-		PageController.cs.exit(root);
+		VisitorController.cs.exit(root);
 		Stage stage = new Stage();
-
+		
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("../loginpage.fxml"));
 
 		Parent root = null;
-
+		
 		try {
 			root = loader.load();
 		} catch (IOException e) {
-
+			
 			e.printStackTrace();
 		}
 		Scene scene = new Scene(root);
@@ -221,52 +226,55 @@ public class PageController implements Initializable {
 		stage.setScene(scene);
 		stage.show();
 	}
-
+	public void moveMyPage() {
+		pm.getMyId(myId);
+		pm.setMainStage();
+		ms.MusicStop();
+		VisitorController.cs.exit(root);
+	}
 	public void memberProc() {
 		FriendListMain addf = new FriendListMain();
 		addf.getMyId(root, myId);
 		System.out.println(myId);
-		addf.setFriendStage();
+		addf.setFriendStage();;
 	}
-
 	public void profileImageShow() {
-		String path = ds.profileImageShow(myId);
-		if (path != null) {
+		String path = ds.profileImageShow(friendId);
+		if(path != null) {
 			profileLbl.setText("");
 			Image image = new Image(path);
 			profileImg.prefWidth(660);
 			profileImg.prefHeight(390);
 			profileImg.setImage(image);
-		} else {
+		}else {
 			profileLbl.setText("프로필 사진");
 		}
 	}
-
 	public void insertProfileImg() {
 		ProfileDTO profileDto = new ProfileDTO();
 		FileChooser chooser = new FileChooser();
 		chooser.getExtensionFilters()
-				.addAll(new FileChooser.ExtensionFilter("Image Files", "*.bmp", "*.png", "*.jpg", "*.gif"));
+				.addAll(new FileChooser.ExtensionFilter("Image Files", "*.bmp", "*.png", "*.jpg", "*.gif")); 
 		File file = chooser.showOpenDialog(new Stage());
 		if (file != null) {
 			String imagepath;
 			try {
 				imagepath = file.toURI().toURL().toString();
-				profileDto.setId(myId);
+				profileDto.setId(friendId);
 				profileDto.setPath(imagepath);
-				String exist = ds.profileImageShow(myId);
-				if (exist == null) {
+				String exist = ds.profileImageShow(friendId);
+				if(exist == null) {
 					int result = ds.profileImage(profileDto);
-					if (result == 1) {
+					if(result == 1) {
 						profileLbl.setText("");
 						Image image = new Image(imagepath);
 						profileImg.prefWidth(660);
 						profileImg.prefHeight(390);
 						profileImg.setImage(image);
 					}
-				} else {
-					int result = ds.profileImageUpdate(myId, imagepath);
-					if (result == 1) {
+				}else {
+					int result = ds.profileImageUpdate(friendId, imagepath);
+					if(result == 1) {
 						profileLbl.setText("");
 						profileImg.imageProperty().set(null);
 						Image image = new Image(imagepath);
@@ -285,23 +293,19 @@ public class PageController implements Initializable {
 			alert.showAndWait();
 		}
 	}
-
 	public void deleteProfileImg() {
-		ds.profileImageDelete(myId);
-		pm.getMyId(myId);
+		ds.profileImageDelete(friendId);
+		pm.getMyId(friendId);
 		pm.setMainStage();
-		ms.MusicStop();
 		PageController.cs.exit(root);
 	}
-
 	public void profileModify() {
-		pfm.setProfileMain(root, myId);
+		pfm.setProfileMain(root, friendId);
 	}
-
 	public void profileShow() {
 		HashMap<Integer, String> profileMap = new HashMap<Integer, String>();
-		// System.out.println("profileShow() 실행");
-		profileMap = ds.profileShow(myId);
+		System.out.println("profileShow() 실행");
+		profileMap = ds.profileShow(friendId);
 		profileName.setText(profileMap.get(1));
 		profileAge.setText(profileMap.get(2));
 		profileBirth.setText(profileMap.get(3));
@@ -309,84 +313,103 @@ public class PageController implements Initializable {
 		profilePNum.setText(profileMap.get(5));
 		profileText.setText(profileMap.get(6));
 	}
-
 	public void diaryWrite() {
-		diary.setDiaryStage(myId, root);
+		diary.setDiaryStage(friendId, root);
 	}
-
 	public void diaryShow() {
 		HashMap<Integer, String> diaryMap = new HashMap<Integer, String>();
-		// System.out.println("mainShow() 실행");
-		diaryMap = ds.showDiary(myId);
-		for (int j = diaryMap.size(); j > 0; j--) {
+		System.out.println("mainShow() 실행");
+		diaryMap = ds.showDiary(friendId);
+		for(int j = diaryMap.size(); j > 0; j--) {
+//			Label lbl = new Label();
+//			lbl.setPrefSize(700, 100);
+//			lbl.setWrapText(true);
+//			lbl.setFont(new Font(30));
+//			lbl.setPadding(new Insets(20));
 			TextArea ta = new TextArea();
 			ta.setPrefSize(700, 50);
 			ta.setWrapText(true);
 			text = diaryMap.get(j);
 			ta.setText(text);
 			diaryVbox.getChildren().addAll(ta);
+//			lbl.setText(text);
+//			diaryVbox.getChildren().addAll(lbl);
 		}
 	}
-
 	public void diaryExit(Parent pageRoot) {
-		ms.MusicStop();
 		PageController.cs.exit(pageRoot);
 	}
-
 	public void visitShow() {
 		HashMap<Integer, String> visitorMap = new HashMap<Integer, String>();
-		String ownerId = myId;
-		visitorMap = ds.showVisitor(ownerId); // 나중에 미니홈피의 주인 아이디 넣기
-		for (int j = visitorMap.size(); j > 0; j--) {
+		String ownerId = friendId;
+		visitorMap = ds.showVisitor(ownerId);	// 나중에 미니홈피의 주인 아이디 넣기
+		for(int j = visitorMap.size(); j > 0; j--) {
 			Label lbl = new Label();
-			lbl.setPadding(new Insets(10));
-			lbl.setText((String) visitorMap.get(j));
+//				lbl.setPrefWidth(700);
+//				lbl.setWrapText(true);
+//				lbl.setFont(new Font(30));
+				lbl.setPadding(new Insets(10));
+			//text = visitorMap.get(j);
+			lbl.setText((String)visitorMap.get(j));
 			visitVbox.getChildren().addAll(lbl);
+//				TextArea ta = new TextArea();
+//				ta.setPrefSize(700, 100);
+//				ta.setWrapText(true);
+//				text = visitorMap.get(j);
+//				ta.setText(text);
+//				visitVbox.getChildren().addAll(ta);
 		}
 	}
-
 	public void visitWrite() {
 		HashMap<Integer, String> visitorMap = new HashMap<Integer, String>();
 		VisitorDTO visitDto = new VisitorDTO();
 		TimeService ts = new TimeService();
 		int serialNum = 0;
-		TextArea content = (TextArea) root.lookup("#visitContent");
-		String ownerId = myId;
-		serialNum = ds.visitorSerialNum(ownerId); // 나중에 미니홈피의 주인 아이디 넣기
+		TextArea content = (TextArea)root.lookup("#visitContent");
+		String ownerId = friendId;
+		serialNum = ds.visitorSerialNum(ownerId);	// 나중에 미니홈피의 주인 아이디 넣기
 		// 친구의 미니홈피로 이동 시 로그인한 아이디(id)와 이동할 홈피 주인의 아이디(ownerId)를 받아서 넣기
 		String time = ts.getTime();
 		visitDto.setId(ownerId);
 		visitDto.setSerialNum(serialNum);
 		visitDto.setContent(myId + " : " + content.getText());
 		visitDto.setTime(time);
-		int result = ds.saveVisitor(visitDto);
-		if (result == 1) {
+		int result  = ds.saveVisitor(visitDto);
+		if(result == 1) {
 			visitorMap = ds.showVisitor(ownerId);
 			content.clear();
 			visitVbox.getChildren().clear();
-			for (int j = visitorMap.size(); j > 0; j--) {
+			for(int j = visitorMap.size(); j > 0; j--) {
 				Label lbl = new Label();
+//				lbl.setPrefWidth(700);
+//				lbl.setWrapText(true);
+//				lbl.setFont(new Font(30));
 				lbl.setPadding(new Insets(10));
-				lbl.setText((String) visitorMap.get(j));
+				//text = visitorMap.get(j);
+				lbl.setText((String)visitorMap.get(j));
 				visitVbox.getChildren().addAll(lbl);
+//				TextArea ta = new TextArea();
+//				ta.setPrefSize(700, 100);
+//				ta.setWrapText(true);
+//				text = visitorMap.get(j);
+//				ta.setText(text);
+//				visitVbox.getChildren().addAll(ta);
 			}
 		}
 	}
-
 	public void visitCancel() {
-		TextArea content = (TextArea) root.lookup("#visitContent");
+		TextArea content = (TextArea)root.lookup("#visitContent");
 		content.clear();
 	}
-
 	public void imageShow() {
 		HashMap<Integer, String> imageMap = new HashMap<Integer, String>();
 		imageVbox.setAlignment(Pos.CENTER);
-		imageMap = ds.showImage(myId);
-		if (imageMap.size() != 0) {
-			// fxPath.setDisable(true); // 사진찾기 버튼 비활성화
-			for (int i = imageMap.size(); i > 0; i--) {
+		imageMap = ds.showImage(friendId);
+		if(imageMap.size() != 0) {
+			//fxPath.setDisable(true);	// 사진찾기 버튼 비활성화
+			for(int i = imageMap.size(); i > 0; i--) {
 				String result = imageMap.get(i);
-				String[] split = result.split("\n");
+				String[] split = result.split("\n");		// ""안에 있는 걸(공백) 기준으로 잘라주는 기능.
 				Label lbl = new Label(split[0]);
 				lbl.setPrefHeight(20);
 				lbl.setFont(new Font(20));
@@ -402,32 +425,31 @@ public class PageController implements Initializable {
 			}
 		}
 	}
-
 	public void choose(ActionEvent actionEvent) {
 		HashMap<Integer, String> imageMap = new HashMap<Integer, String>();
 		ImageDTO imageDto = new ImageDTO();
 		TimeService ts = new TimeService();
 		FileChooser chooser = new FileChooser();
 		chooser.getExtensionFilters()
-				.addAll(new FileChooser.ExtensionFilter("Image Files", "*.bmp", "*.png", "*.jpg", "*.gif"));
+				.addAll(new FileChooser.ExtensionFilter("Image Files", "*.bmp", "*.png", "*.jpg", "*.gif")); 
 		File file = chooser.showOpenDialog(new Stage());
 		if (file != null) {
 			String imagepath;
 			try {
 				imagepath = file.toURI().toURL().toString();
-				imageNum = ds.serialNumber(myId);
+				imageNum = ds.serialNumber(friendId);
 				String time = ts.getTime();
-				imageDto.setId(myId);
+				imageDto.setId(friendId);
 				imageDto.setSerialNum(imageNum);
 				imageDto.setPath(imagepath);
 				imageDto.setTime(time);
 				ds.saveImagePath(imageDto);
-				imageMap = ds.showImage(myId);
+				imageMap = ds.showImage(friendId);
 				imageVbox.getChildren().clear();
-				if (imageMap.size() != 0) {
-					for (int i = imageMap.size(); i > 0; i--) {
+				if(imageMap.size() != 0) {
+					for(int i = imageMap.size(); i > 0; i--) {
 						String result = imageMap.get(i);
-						String[] split = result.split("\n");
+						String[] split = result.split("\n");		// ""안에 있는 걸(공백) 기준으로 잘라주는 기능.
 						Label lbl = new Label(split[0]);
 						lbl.setPrefHeight(20);
 						lbl.setFont(new Font(20));
@@ -446,11 +468,10 @@ public class PageController implements Initializable {
 				e.printStackTrace();
 			}
 		} else {
-			cs.alert("파일을 선택해 주세요");
-//			Alert alert = new Alert(Alert.AlertType.INFORMATION);
-//			alert.setTitle("Information Dialog");
-//			alert.setHeaderText("Please Select a File");
-//			alert.showAndWait();
+			Alert alert = new Alert(Alert.AlertType.INFORMATION);
+			alert.setTitle("Information Dialog");
+			alert.setHeaderText("Please Select a File");
+			alert.showAndWait();
 		}
 	}
 	
@@ -458,37 +479,31 @@ public class PageController implements Initializable {
 		fxBtn01.setLayoutX(739);
 		fxBtn01.setLayoutY(213);
 	}
-
 	public void btnPress02() {
 		fxBtn02.setLayoutX(739);
 		fxBtn02.setLayoutY(263);
 	}
-
 	public void btnPress03() {
 		fxBtn03.setLayoutX(739);
 		fxBtn03.setLayoutY(313);
 	}
-
 	public void btnPress04() {
 		fxBtn04.setLayoutX(739);
 		fxBtn04.setLayoutY(363);
 	}
-
+	
 	public void btnRelease01() {
 		fxBtn01.setLayoutX(739);
 		fxBtn01.setLayoutY(211);
 	}
-
 	public void btnRelease02() {
 		fxBtn02.setLayoutX(739);
 		fxBtn02.setLayoutY(261);
 	}
-
 	public void btnRelease03() {
 		fxBtn03.setLayoutX(739);
 		fxBtn03.setLayoutY(311);
 	}
-
 	public void btnRelease04() {
 		fxBtn04.setLayoutX(739);
 		fxBtn04.setLayoutY(361);

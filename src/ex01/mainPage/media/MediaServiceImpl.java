@@ -46,6 +46,11 @@ public class MediaServiceImpl implements MediaService {
 	}
 
 	@Override
+	public void MusicStop() {
+		mediaPlayer.stop();
+	}
+
+	@Override
 	public void setMedia(Parent root, String mediaName) {
 		setController(root);
 		System.out.println(getClass().getResource(mediaName));

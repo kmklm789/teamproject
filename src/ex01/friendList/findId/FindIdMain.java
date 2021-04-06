@@ -8,6 +8,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 public class FindIdMain  {
+	Parent mainPageRoot;
 	String myId;
 	 public void setMemberStage() {
 	    	Stage stage = new Stage();
@@ -22,13 +23,14 @@ public class FindIdMain  {
 			Scene scene = new Scene(root);
 			
 			FindIdController controller = loader.getController();
-			controller.setRoot(root, myId);
+			controller.setRoot(root, myId, mainPageRoot);
 			
 			stage.setScene(scene);
 	    	stage.show();
 	    }
 
-	public void getMyId(String myId) {
+	public void getMyId(Parent mainPageRoot, String myId) {
+		this.mainPageRoot = mainPageRoot;
 		this.myId = myId;
 	}
 

@@ -5,6 +5,7 @@ import javafx.scene.Parent;
 public interface MediaService {
 	public void MusicPlay();
 	public void MusicPause();
+	public void MusicStop();
 	public void setMedia(Parent root, String mediaName);
 	public void VolumControll();
 	void MusicNext();

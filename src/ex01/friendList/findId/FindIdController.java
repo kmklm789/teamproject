@@ -22,13 +22,15 @@ public class FindIdController implements Initializable {
 	@FXML
 	TextField fxid;
 	Parent root;
+	Parent mainPageRoot;
 	EntFriend ls;;
 	CheckMain cm;
 	String myId;
 
-	public void setRoot(Parent root, String myId) {
+	public void setRoot(Parent root, String myId, Parent mainPageRoot) {
 		this.root = root;
 		this.myId = myId;
+		this.mainPageRoot = mainPageRoot;
 		System.out.println(myId);
 		ls.setRoot(root);
 	}
@@ -54,7 +56,7 @@ public class FindIdController implements Initializable {
 				// 등록하시겠습니까? 예-등록되었습니다 아니오-취소되었습니다
 
 			} else {
-				cm.setCheckStage(id.getText(), myId);
+				cm.setCheckStage(id.getText(), myId, mainPageRoot);
 				ControllerFL.cs.exit(root);
 			}
 		}
@@ -84,7 +86,7 @@ public class FindIdController implements Initializable {
 		Scene scene = new Scene(root);
 
 		ControllerFL controller = loader.getController();
-		controller.setRoot(root, myId);
+		controller.setRoot(root, myId, mainPageRoot);
 
 		stage.setScene(scene);
 		stage.show();

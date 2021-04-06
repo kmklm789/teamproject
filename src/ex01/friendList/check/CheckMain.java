@@ -10,7 +10,7 @@ import javafx.stage.Stage;
 
 public class CheckMain  {
 
-	public void setCheckStage(String userId, String myId) {
+	public void setCheckStage(String userId, String myId, Parent mainPageRoot) {
 		Stage stage = new Stage();
     	FXMLLoader loader = new FXMLLoader(getClass().getResource("checkTest.fxml"));
 		Parent root = null; //초기화
@@ -22,7 +22,7 @@ public class CheckMain  {
 		Scene scene = new Scene(root);
 		
 		CheckController controller = loader.getController();
-		controller.setRoot(root, userId, myId);
+		controller.setRoot(root, userId, myId, mainPageRoot);
 		Label id = (Label)root.lookup("#fxRead");
 		System.out.println("아이디 출력 : "+id.getText()); 
 		id.setText(userId);

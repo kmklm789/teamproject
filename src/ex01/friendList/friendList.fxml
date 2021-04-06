@@ -5,13 +5,14 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="143.0" prefWidth="241.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ex01.friendList.ControllerFL">
+<AnchorPane prefHeight="143.0" prefWidth="225.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ex01.friendList.ControllerFL">
    <children>
-      <ComboBox fx:id="cmbFriend" layoutX="43.0" layoutY="36.0" onAction="#addComboBox" prefHeight="27.0" prefWidth="155.0" promptText="           친구목록" />
-      <Button layoutX="43.0" layoutY="78.0" mnemonicParsing="false" onAction="#memberProc" prefHeight="27.0" prefWidth="155.0" text="등록하기 ">
+      <ComboBox fx:id="cmbFriend" layoutX="31.0" layoutY="36.0" onAction="#addComboBox" prefHeight="27.0" prefWidth="123.0" promptText="          친구목록" />
+      <Button layoutX="31.0" layoutY="78.0" mnemonicParsing="false" onAction="#memberProc" prefHeight="27.0" prefWidth="163.0" text="등록하기 ">
          <font>
             <Font name="Arial" size="13.0" />
          </font>
       </Button>
+      <Button layoutX="155.0" layoutY="36.0" mnemonicParsing="false" onAction="#move" prefHeight="27.0" prefWidth="40.0" text="이동" />
    </children>
 </AnchorPane>

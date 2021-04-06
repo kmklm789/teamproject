@@ -9,6 +9,8 @@ import ex01.common.CommonService;
 import ex01.database.DatabaseService;
 import ex01.database.DatabaseServiceImpl;
 import ex01.mainPage.PageController;
+import ex01.mainPage.media.MediaService;
+import ex01.mainPage.media.MediaServiceImpl;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
@@ -24,6 +26,7 @@ public class ProfileController implements Initializable {
 	Parent pageRoot;
 	String id;
 	DatabaseService ds;
+	PageController pc;
 	public static CommonService cs;
 	static {
 		cs = new CommonClass();
@@ -85,14 +88,20 @@ public class ProfileController implements Initializable {
 			if(result == 1) {
 				ProfileController.cs.exit(root);
 				callMain();
+				pc.MusicPause();
 				PageController.cs.exit(pageRoot);
+			}else {
+				ProfileController.cs.alert("모든 정보를 입력하세요");
 			}
 		}else {
 			int result = ds.profileUpdate(info, id);
 			if(result == 1) {
 				ProfileController.cs.exit(root);
 				callMain();
+				pc.MusicPause();
 				PageController.cs.exit(pageRoot);
+			}else {
+				ProfileController.cs.alert("모든 정보를 입력하세요");
 			}
 		}
 	}
@@ -136,6 +145,7 @@ public class ProfileController implements Initializable {
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		ds = new DatabaseServiceImpl();
+		pc = new PageController();
 	}
 
 }

@@ -1,4 +1,4 @@
-package ex01.friendList;
+package ex01.visitorMain;
 
 import java.io.IOException;
 
@@ -7,14 +7,16 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-public class FriendListMain {
-	Parent mainPageRoot;
+public class VisitorMainPage {
+	String friendId;
 	String myId;
 
-	public void setFriendStage() {
+	public void setMainStage() {
 		
 		Stage stage = new Stage();
-		FXMLLoader loader = new FXMLLoader(getClass().getResource("friendList.fxml"));
+		
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("VisitorMainPage.fxml"));
+
 		Parent root = null;
 		
 		try {
@@ -23,18 +25,17 @@ public class FriendListMain {
 			
 			e.printStackTrace();
 		}
-		
 		Scene scene = new Scene(root);
-		
 
-		ControllerFL controller = loader.getController();
-		controller.setRoot(root, myId, mainPageRoot);
-		
+		VisitorController controller = loader.getController();
+		controller.setRoot(root, friendId, myId);
+
 		stage.setScene(scene);
 		stage.show();
 	}
-	public void getMyId(Parent mainPageRoot, String myId) {
-		this.mainPageRoot = mainPageRoot;
+	
+	public void getMyId(String friendId, String myId) {
+		this.friendId = friendId;
 		this.myId = myId;
 	}
 
